@@ -1,0 +1,14 @@
+.view-login .flex-content, 
+.view-signup .flex-content , 
+.view-forgotPassword .flex-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.view-forgotPassword .text {
+	color: #0066CC;
+	padding: 10px 0px;
+}
