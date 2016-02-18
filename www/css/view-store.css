@@ -1,0 +1,22 @@
+.abilitie-content {
+	display: flex;
+}
+
+.abilitie-install {
+	color: #0066CC;
+	font-size: 30px;
+	padding: 10px 10px 0px 0px;
+}
+
+.abilitie-header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.abilitie-title {
+	color: #0066CC;
+}
+
+.abilitie-price {
+	color: #66D850;
+}

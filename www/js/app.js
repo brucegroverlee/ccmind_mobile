@@ -83,11 +83,29 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.profile', {
+    url: '/profile',
+    views: {
+      'menuContent': {
+        templateUrl: 'views/view-profile.html'
+      }
+    }
+  })
+
   .state('app.daemon', {
     url: '/daemon',
     views: {
       'menuContent': {
         templateUrl: 'views/view-daemon.html'
+      }
+    }
+  })
+
+  .state('app.store', {
+    url: '/store',
+    views: {
+      'menuContent': {
+        templateUrl: 'views/view-store.html'
       }
     }
   })
