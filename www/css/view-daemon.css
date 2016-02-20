@@ -3,4 +3,44 @@
 	flex-direction: column;
 	justify-content: flex-end;
 	height: 90vh;
+	padding: 0px 10px;
+}
+
+.view-daemon .card {
+	padding: 10px;
+	margin: 20px 0px;
+}
+
+.view-daemon .message-user {
+	background-color: #3390ED;
+	color: #FFFFFF;
+}
+
+.view-daemon .message-daemon {
+	font-size: 18px;
+}
+
+.view-daemon .message-daemon .message-result {}
+
+.view-daemon .message-daemon .message-tools {
+	border-top: solid 1px #ECECEC;
+}
+
+.view-daemon .input {
+	padding-bottom: 10px;
+}
+
+.view-daemon .tools {
+	background-color: #FFFFFF;
+	color: #D6D5D5;
+	font-size: 40px;
+	padding: 5px 10px;
+	display: flex;
+	justify-content: space-between;
+	border-radius: 50px;
+	border: solid 1px #D6D5D5;
+}
+
+.view-daemon .tools .ion-ios-heart {
+	color: #FD8C8C;
 }
