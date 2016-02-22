@@ -15,25 +15,37 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('sessionCtrl', ['$scope', '$window', 'sessionService', function ($scope, $window, sessionService) {
-	var endPointAppDaemon = "/#/app/daemon"
+.controller('launchCtrl', ['$scope', '$state', function ($scope, $state) {
+  //$state.go('login')
+  (function () {
+    setTimeout( function () {
+      //$window.document.location.href = "/#/login"
+      $state.go('login')
+    }, 1000)
+  }())
+}])
 
-	$scope.loginData = {
-  	"name": null,
-  	"email": null,
-  	"password": null,
-  	"password2": null
+.controller('sessionCtrl', ['$scope', '$window', '$location', '$state', 'sessionService', function ($scope, $window, $location, $state, sessionService) {
+  var endPointAppDaemon = "/#/app/daemon"
+
+  $scope.loginData = {
+    "name": null,
+    "email": null,
+    "password": null,
+    "password2": null
   }
   
-	$scope.login = function () {
+  $scope.login = function () {
     var loginResult = sessionService.login($scope.loginData.email, $scope.loginData.password)
-		console.log($scope.loginData.email)
+    console.log($scope.loginData.email)
     console.log($scope.loginData.password)
     console.log(loginResult)
     if ( loginResult === true ) {
-			$window.location.href = endPointAppDaemon;
-		} else {
+      //$window.location.href = endPointAppDaemon;
+      //$location.path(endPointAppDaemon)
+      $state.go('app.daemon')
+    } else {
       console.log('login fail')
     }
-	}
+  }
 }])
