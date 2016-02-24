@@ -1,0 +1,55 @@
+commit 82a432a537c6b1cd8283b940451d63dd8bbd8a63
+Author: Bruce Grover Lee <brucegrover.lee@gmail.com>
+Date:   Wed Feb 24 10:24:45 2016 -0500
+
+    sass is enabled
+
+commit 49b99e6288fa14e32b8f8a9e2efc666523a0fdb0
+Author: Bruce Grover Lee <brucegrover.lee@gmail.com>
+Date:   Tue Feb 23 23:49:17 2016 -0500
+
+    http post request is ok
+
+commit 5fe470cd513801ba1f211be059e30b5e07ddc9fb
+Author: Bruce Grover Lee <brucegrover.lee@gmail.com>
+Date:   Sun Feb 21 22:34:02 2016 -0500
+
+    login transition is ok
+
+commit 97db18a2922c7b142878174fd4398ad6028e3125
+Author: Bruce Grover Lee <brucegrover.lee@gmail.com>
+Date:   Sat Feb 20 10:28:27 2016 -0500
+
+    angular login is ok
+
+commit fa12a652fd9e2c904be485d37d3aed951b044181
+Author: Bruce Grover Lee <brucegrover.lee@gmail.com>
+Date:   Wed Feb 17 22:57:27 2016 -0500
+
+    the daemon file is in process
+
+commit 7b37c8d8b705bff0af61368a28ceb6e28959eae6
+Author: Bruce Grover Lee <brucegrover.lee@gmail.com>
+Date:   Wed Feb 17 18:44:55 2016 -0500
+
+    launchScreen, login, signup and forgotPassword is ok
+
+commit 4a91c0ff7a169708839384d4731734f87b9b8ccc
+Merge: e08e6e3 474878d
+Author: Bruce Grover Lee <brucegrover.lee@gmail.com>
+Date:   Tue Feb 16 17:38:47 2016 -0500
+
+    Merg-tracking branch 'origin/master'
+    this is the firts merge with github
+
+commit 474878d257d806fef21e066b707698d4bab6c7d2
+Author: Bruce Grover Lee <brucegrover.lee@gmail.com>
+Date:   Tue Feb 16 17:37:48 2016 -0500
+
+    Initial commit
+
+commit e08e6e3418aa3d49fe334066d3afe44e704cde2f
+Author: Bruce Grover Lee <brucegrover.lee@gmail.com>
+Date:   Tue Feb 16 17:24:06 2016 -0500
+
+    the firts step of the project

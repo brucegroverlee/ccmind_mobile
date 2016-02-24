@@ -11,7 +11,46 @@ angular.module('starter.services', [])
   }
 })
 
-.factory('sessionService', ['$http', 'config', function ($http, config) {
+.factory('$localstorage', ['$window', '$q', function ($window, $q) {
+  return {
+    set: function (key, value) {
+      $window.localstorage[key] = value
+    },
+    get: function (key, defaultValue) {
+      return $window.localStorage[key] || defaultValue
+    },
+    setObject: function(key, value) {
+      return $q(function(resolve, reject) {
+        setTimeout(function() {
+          if ($window.localStorage[key] = JSON.stringify(value)) {
+            resolve(true);
+          } else {
+            reject(false);
+          }
+        }, 1000);
+      });
+      /*var deferred = $q.defer()
+      $window.localStorage[key] = JSON.stringify(value)
+      deferred.resolve(true)
+      deferred.reject(false)
+      return deferred.promise*/
+
+      /*process.nextTick( function () {
+        $window.localStorage[key] = JSON.stringify(value)
+        callback(true)
+      })*/
+      //$window.localStorage[key] = JSON.stringify(value)
+    },
+    getObject: function(key) {
+      return JSON.parse($window.localStorage[key] || false)
+    },
+    reset: function () {
+      $window.localStorage.clear()
+    }
+  }
+}])
+
+.factory('sessionService', ['$http', '$state', '$localstorage', 'config', function ($http, $state, $localstorage, config) {
   var loginTmp = {
     name: "bruce",
     email: "bruce@gmail.com",
@@ -31,13 +70,20 @@ angular.module('starter.services', [])
     })
     .then(
       function (response) {
-        console.log('Signup successful')
+        console.log('sessionService: Signup successful')
         console.log(response.data)
+        $localstorage.setObject('user', response.data.user)
+        .then(function (data) {
+          $state.go('app.daemon')
+          return true
+        })
+        //$state.go('app.daemon')
+        //return true
         //deferred.resolve( response.data )
         //$window.location.href = endPointApp;
       }, 
       function (response) {
-        console.log('Signup failed')
+        console.log('sessionService: Signup failed')
         console.log(response.data)
         //deferred.reject({error: 'error 500'})
         return false
@@ -57,12 +103,19 @@ angular.module('starter.services', [])
     })
     .then(
       function (response) {
-        console.log('Login successful')
+        console.log('sessionService: Login successful')
         console.log(response.data)
+        $localstorage.setObject('user', response.data.user)
+        .then(function (data) {
+          $state.go('app.daemon')
+          return true
+        })
+        //$localstorage.setObject('user', response.data.user)
+        //$state.go('app.daemon')
         //return true
       }, 
       function (response) {
-        console.log('Login failed')
+        console.log('sessionService: Login failed')
         console.log(response.data)
         return false
       })
@@ -74,8 +127,25 @@ angular.module('starter.services', [])
       }*/
   }
 
+  function getUser () {
+    var user = $localstorage.getObject('user')
+    console.log('sessionService: ' + user)
+    if ( user === false ) {
+      return false
+    } else {
+      return user
+    }
+  }
+
+  function logout () {
+    $localstorage.reset()
+    $state.go('launchScreen')
+  }
+
   return {
     signup: signup,
-    login: login
+    login: login,
+    getUser: getUser,
+    logout: logout
   }
 }])

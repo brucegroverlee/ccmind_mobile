@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope) {
+.controller('AppCtrl', function($scope, $state, sessionService) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -9,23 +9,41 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
   $scope.user = {
+    id: null,
     name: null,
-    email: null
+    email: null,
+    key: null
   }
+
+  $scope.getUser = function () {
+    var user = sessionService.getUser()
+    console.log('AppCtrl: ' + user)
+    if ( user === false ) {
+      $state.go('launchScreen')
+    } else {
+      $scope.user = user
+    }
+  } 
 
 })
 
-.controller('launchCtrl', ['$scope', '$state', function ($scope, $state) {
+.controller('launchCtrl', ['$scope', '$state', 'sessionService', function ($scope, $state, sessionService) {
   //$state.go('login')
   (function () {
+    if ( sessionService.getUser() !== false ) {
+      $state.go('app.daemon')
+    } 
+    /*else {
+      $state.go('login')
+    }*/
     setTimeout( function () {
       //$window.document.location.href = "/#/login"
       $state.go('login')
-    }, 1000)
+    }, 500)
   }())
 }])
 
-.controller('sessionCtrl', ['$scope', '$window', '$location', '$state', 'sessionService', function ($scope, $window, $location, $state, sessionService) {
+.controller('sessionCtrl', ['$scope', '$state', 'sessionService', function ($scope, $state, sessionService) {
   var endPointAppDaemon = "/#/app/daemon"
 
   $scope.loginData = {
@@ -44,6 +62,11 @@ angular.module('starter.controllers', [])
     console.log($scope.loginData.email)
     console.log($scope.loginData.password)
     console.log(signupResult)
+    /*if ( signupResult === true ) {
+      $state.go('app.daemon')
+    } else {
+      console.log('sessionCtrl: Signup fail')
+    }*/
   }
   
   $scope.login = function () {
@@ -51,12 +74,22 @@ angular.module('starter.controllers', [])
     console.log($scope.loginData.email)
     console.log($scope.loginData.password)
     console.log(loginResult)
-    if ( loginResult === true ) {
+    /*if ( loginResult === true ) {
       //$window.location.href = endPointAppDaemon;
       //$location.path(endPointAppDaemon)
       $state.go('app.daemon')
     } else {
-      console.log('login fail')
+      console.log('sessionCtrl: Login fail')
+    }*/
+  }
+
+  $scope.logout = function () {
+    sessionService.logout()
+  }
+
+  $scope.isLogin = function () {
+    if ( sessionService.getUser() !== false ) {
+      $state.go('app.daemon')
     }
   }
 }])

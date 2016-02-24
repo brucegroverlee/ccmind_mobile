@@ -1,4 +1,4 @@
-<ion-view view-title="Profile">
+<ion-view view-title="Profile" ng-controller="sessionCtrl" ng-init="getUser()">
 <ion-nav-title>
     Profile
 </ion-nav-title>
@@ -7,11 +7,11 @@
 		    <div class="list list-inset">
 				<label class="item item-input">
 					<i class="icon ion-person placeholder-icon"></i>
-					<input type="text" placeholder="Name">
+					<input type="text" placeholder="Name" ng-model="user.name">
 				</label>
 				<label class="item item-input">
 					<i class="icon ion-ios-email placeholder-icon"></i>
-					<input type="text" placeholder="Email address">
+					<input type="text" placeholder="Email address" ng-model="user.email">
 				</label>
 				<br>
 				<label class="item item-input">
@@ -25,7 +25,7 @@
 				<button class="button button-block button-positive">
 					Save
 				</button>
-				<button class="button button-outline button-positive">
+				<button class="button button-outline button-positive" ng-click="logout()">
 					Logout
 				</button>
 			</div>
