@@ -34,6 +34,17 @@ angular.module('starter.controllers', [])
     "password": null,
     "password2": null
   }
+
+  $scope.signup = function () {
+    var signupResult = sessionService.signup(
+      $scope.loginData.name,
+      $scope.loginData.email,
+      $scope.loginData.password)
+    console.log($scope.loginData.name)
+    console.log($scope.loginData.email)
+    console.log($scope.loginData.password)
+    console.log(signupResult)
+  }
   
   $scope.login = function () {
     var loginResult = sessionService.login($scope.loginData.email, $scope.loginData.password)
