@@ -149,3 +149,29 @@ angular.module('starter.services', [])
     logout: logout
   }
 }])
+
+.factory('chatService', ['$window', function ($window) {
+  
+  function saveComment(comment) {
+    var comments = getComments();
+
+    comments.push(comment);
+    localStorage.setItem('chat', JSON.stringify(comments));
+  }
+
+  function getComments() {
+    var comments = localStorage.getItem('chat');
+
+    if (!comments) {
+      comments = [];
+    } else {
+      comments = JSON.parse(comments);
+    }
+    return comments;
+  }
+
+  return {
+    saveComment: saveComment,
+    getComments: getComments
+  }
+}])

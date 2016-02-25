@@ -1,34 +1,24 @@
-<ion-view view-title="2cmind" ng-init="getUser()">
+<ion-view view-title="2cmind" ng-controller="chatCtrl" ng-init="getUser()">
 <ion-nav-title>
     2cmind
 </ion-nav-title>
   <ion-content class="view-daemon">
   	<div class="flex-content">
-  		<div class="chat">
-  			<div class="card message-user">Hello!</div>
-  			<div class="card message-daemon">
-  				<div class="message-result">
-  					Hi!
-  				</div>
-  				<!--<div class="message-tools">
-  					<i class="icon ion-ios-heart-outline"></i>
-  					<i class="icon ion-ios-heart"></i>
-  					<i class="icon ion-android-star-outline"></i>
-  					<i class="icon ion-android-star"></i>
-  					<i class="icon ion-ios-star-outline"></i>
-  					<i class="icon ion-ios-star"></i>
-  				</div>-->
-  			</div>
-  		</div>
+      <ion-scroll direction="y" zooming="false" scrollbar-y="true" id="scroll" delegate-handle="scroll" ng-init="loadChat()">
+        <div ng-repeat="comment in comments" class="card message-{{comment.author}}">
+          {{comment.message}}
+        </div>
+      </ion-scroll>
+  		
   		<div class="input">
   			<label class="item item-input">
   				<i class="icon ion-android-textsms placeholder-icon"></i>
-				<input type="text" placeholder="write here">
+				<input type="text" placeholder="write here" ng-model="comment.message">
 			</label>
   		</div>
   		<div class="tools">
   			<i class="icon ion-ios-heart"></i>
-  			<i class="icon ion-android-send"></i>
+  			<i class="icon ion-android-send" ng-click="addComment()"></i>
   			<i class="icon ion-android-cancel"></i>
   		</div>
   	</div>

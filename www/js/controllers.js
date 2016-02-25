@@ -93,3 +93,53 @@ angular.module('starter.controllers', [])
     }
   }
 }])
+
+.controller('chatCtrl', ['$scope', '$window', '$ionicScrollDelegate', 'chatService', function ($scope, $window, $ionicScrollDelegate, chatService) {
+  var localStorage = $window.localStorage
+  $scope.comments = chatService.getComments()
+  $scope.comment = {}
+  /*$scope.comments = [
+    {
+      author: 'user',
+      message: 'hello!'
+    },
+    {
+      author: 'daemon',
+      message: 'hiiiii!'
+    }
+  ]*/
+
+  //$scope.msg = 'null'
+
+  /*$scope.send = function () {
+    var elementHtml = document.getElementById('chat')
+    angular.element(elementHtml)
+    .append('<message-user message="1"></message-user>')
+    
+    //.append('holilili')
+    var message = {
+      author: 'user',
+      message: $scope.msg
+    }
+    $scope.comments.push(message)
+  }*/
+
+  $scope.addComment = function () {
+    //angular.element(elementHtml)
+    //elementHtml.scrollTop(elementHtml.scrollHeight)
+
+    $scope.comment.date = Date.now()
+    $scope.comment.author = 'user'
+    chatService.saveComment($scope.comment)
+    $scope.comments = chatService.getComments()
+    $scope.comment = {}
+    //var elementHtml = document.getElementById('scroll')
+    //elementHtml.scrollTop = elementHtml.scrollHeight
+    $ionicScrollDelegate.$getByHandle('scroll').scrollBottom()
+  }
+
+  $scope.loadChat = function () {
+    //$ionicScrollDelegate.$getByHandle('scroll').scrollBottom()
+  }
+
+}])
