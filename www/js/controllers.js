@@ -130,14 +130,16 @@ angular.module('starter.controllers', [])
 
     $scope.comment.date = Date.now()
     $scope.comment.author = 'user'
+    
+    socket.emit('new message',$scope.comment.message)
+    console.log('se envio mensaje al chat')
+
     chatService.saveComment($scope.comment)
     $scope.comments = chatService.getComments()
     //var elementHtml = document.getElementById('scroll')
     //elementHtml.scrollTop = elementHtml.scrollHeight
     $ionicScrollDelegate.$getByHandle('scroll').scrollBottom()
 
-    socket.emit('new message',$scope.comment.message)
-    console.log('se envio mensaje al chat')
 
     $scope.comment = {}
   }
@@ -159,7 +161,7 @@ angular.module('starter.controllers', [])
       message: message,
       date: Date.now()
     }
-    console.log('addMessage')
+    console.log('')
     console.log(comment)
     chatService.saveComment(comment)
     $scope.comments = chatService.getComments()
