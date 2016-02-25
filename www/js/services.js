@@ -153,6 +153,8 @@ angular.module('starter.services', [])
 .factory('chatService', ['$window', function ($window) {
   
   function saveComment(comment) {
+    console.log('saveComment')
+    console.log(comment)
     var comments = getComments();
 
     comments.push(comment);
@@ -161,6 +163,8 @@ angular.module('starter.services', [])
 
   function getComments() {
     var comments = localStorage.getItem('chat');
+    console.log('getComments')
+    console.log(comments)
 
     if (!comments) {
       comments = [];
@@ -174,4 +178,15 @@ angular.module('starter.services', [])
     saveComment: saveComment,
     getComments: getComments
   }
+}])
+
+.factory('socket', ['socketFactory', function(socketFactory){
+  //Create socket and connect to http://chat.socket.io 
+   var myIoSocket = io.connect('http://chat.socket.io')
+
+    mySocket = socketFactory({
+      ioSocket: myIoSocket
+    })
+
+  return mySocket
 }])

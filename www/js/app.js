@@ -5,6 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', [
   'ionic', 
+  'btford.socket-io',
   'ui.router', 
   'starter.controllers',
   'starter.services',
