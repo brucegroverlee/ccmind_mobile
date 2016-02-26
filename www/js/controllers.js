@@ -130,7 +130,7 @@ angular.module('starter.controllers', [])
 
     $scope.comment.date = Date.now()
     $scope.comment.author = 'user'
-    
+
     socket.emit('new message',$scope.comment.message)
     console.log('se envio mensaje al chat')
 
@@ -146,13 +146,6 @@ angular.module('starter.controllers', [])
 
   $scope.loadChat = function () {
     //$ionicScrollDelegate.$getByHandle('scroll').scrollBottom()
-  }
-
-  function addMessageToList(username,style_type,message){
-    username = $sanitize(username) //The input is sanitized For more info read this link
-    var color = style_type ? getUsernameColor(username) : null //Get color for user
-    self.messages.push({content:$sanitize(message),style:style_type,username:username,color:color})  // Push the messages to the messages list.
-    $ionicScrollDelegate.scrollBottom(); // Scroll to bottom to read the latest
   }
 
   function addMessage (author, message) {
